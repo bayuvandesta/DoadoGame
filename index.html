@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doado Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="dice-wrap">
+            <img id="dice-1">
+            <img id="dice-2">
+        </div>
+        <p id="total"></p>
+        <button onclick="RollDice()">ROLL THE DICE</button>
+    </div>
+
+    <script type="text/javascript">
+    let images =["Dice-1.png",
+                 "Dice-2.png",
+                 "Dice-3.png",
+                 "Dice-4.png",
+                 "Dice-5.png",
+                 "Dice-6.png",
+    ];
+
+    let dice = document.querySelectorAll("img");
+
+    function RollDice() {
+        dice.forEach(function(die) {
+            die.classList.add("roll")    
+        });
+        setTimeout(function() {
+            dice.forEach(function(die) {
+            die.classList.remove("roll") 
+        });
+
+        let dice1val = Math.floor(Math.random()*6);
+        let dice2val = Math.floor(Math.random()*6);
+        console.log(dice1val);
+        document.querySelector("#dice-1").setAttribute("src", images[dice1val]);
+        document.querySelector("#dice-2").setAttribute("src", images[dice2val]);
+        document.querySelector("#total").innerHTML = "Yor Roll is" + ((dice1val +1)+(dice2val + 1));
+    },
+    1000
+        );
+}
+roll();
+</script>
+</body>
+</html>
